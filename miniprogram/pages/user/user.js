@@ -103,6 +103,8 @@ Page({
           nickName: userInfo.nickName,
           signature: "",
           phoneNumber: "",
+          weixinNumber: "",
+          showLocation: true,
           links: 0,
           time: new Date()
         }

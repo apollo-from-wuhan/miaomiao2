@@ -1,11 +1,15 @@
 // miniprogram/pages/editUserInfo/location/location.js
+
+const app = getApp();
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    shareLocation: true
   },
 
   /**
@@ -19,7 +23,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.setData({
+      shareLocation: app.userInfo.shareLocation
+    }
+    )
   },
 
   /**
@@ -62,5 +69,16 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  switchLocation(ev) {
+    let value = ev.detail.value
+    db.collection("users").doc(app.userInfo._id).update({
+      data: {
+        shareLocation: value
+      }
+    }).then(res => {
+
+    })
   }
 })
