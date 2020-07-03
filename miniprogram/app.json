@@ -6,7 +6,13 @@
     "pages/message/message",
     "pages/editUserInfo/editUserInfo",
     "pages/friendsList/friendsList",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/editUserInfo/head/head",
+    "pages/editUserInfo/name/name",
+    "pages/editUserInfo/signature/signature",
+    "pages/editUserInfo/location/location",
+    "pages/editUserInfo/phone/phone",
+    "pages/editUserInfo/weixin/weixin"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
