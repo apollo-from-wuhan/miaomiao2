@@ -1,11 +1,15 @@
 // miniprogram/pages/editUserInfo/phone/phone.js
+
+const app = getApp();
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    phoneNumber: ""
   },
 
   /**
@@ -19,7 +23,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.setData({
+      phoneNumber: app.userInfo.phoneNumber
+    })
   },
 
   /**
@@ -62,5 +68,33 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  handleText(event) {
+    let value = event.detail.value
+    this.setData({
+      phoneNumber: value
+    })
+  },
+
+  handleBtn() {
+    this.updatePhoneNumber()
+  },
+
+  updatePhoneNumber() {
+    wx.showLoading({
+      title: "更新中"
+    })
+    db.collection("users").doc(app.userInfo._id).update({
+      data: {
+        phoneNumber: this.data.phoneNumber
+      }
+    }).then(res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: "更新成功"
+      })
+      app.userInfo.phoneNumber = this.data.phoneNumber
+    })
   }
 })
