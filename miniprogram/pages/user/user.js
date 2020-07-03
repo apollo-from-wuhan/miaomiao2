@@ -1,5 +1,6 @@
 // pages/user/user.js
 
+const app = getApp()
 const db = wx.cloud.database()
 
 Page({
@@ -9,8 +10,10 @@ Page({
    */
   data: {
     userPhoto: "../../images/user/user-unlogin.png",
-    nickname: "小猫猫",
-    logged: false
+    nickName: "小猫猫",
+    logged: false,
+    disabled: true,
+    id: ""
   },
 
   /**
@@ -24,7 +27,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.cloud.callFunction({
+      name: "login",
+      data: {}
+    }).then(res => {
+      db.collection("users").where({
+        _openid: res.result.openid
+      }).get().then(res => {
+        if (res.data.length) {
+          app.userInfo = Object.assign(app.userInfo, res.data[0])
+          this.setData({
+            userPhoto: app.userInfo.userPhoto,
+            nickName: app.userInfo.nickName,
+            logged: true,
+            id: app.userInfo._id
+          })
+        } else {
+          this.setData({
+            disabled: false
+          })
+        }
+      })
+    })
   },
 
   /**
@@ -86,6 +110,15 @@ Page({
         console.log("失败: ", e)
       }).then(res => {
         console.log("成功: ", res)
+        db.collection("users").doc(res._id).get().then(res => {
+          app.userInfo = Object.assign(app.userInfo, res.data)
+          this.setData({
+            userPhoto: app.userInfo.userPhoto,
+            nickName: app.userInfo.nickName,
+            logged: true,
+            id: app.userInfo._id
+          })
+        })
       })
     }
   }

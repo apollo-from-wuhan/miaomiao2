@@ -15,9 +15,8 @@ App({
       })
       console.log(wx.cloud)
     }
-  },
 
-  globalData: {
-    userInfo: null
+    this.globalData = {}
+    this.userInfo = {}
   }
 })

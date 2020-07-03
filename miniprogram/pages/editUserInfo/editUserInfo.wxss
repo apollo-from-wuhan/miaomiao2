@@ -1,0 +1,18 @@
+/* miniprogram/pages/editUserInfo/editUserInfo.wxss */
+.edit-user-info {
+margin-top:40rpx;
+}
+
+.edit-user-info-item {
+height:50rpx;
+border-bottom:1px #b4b5b6 dashed;
+padding:10rpx;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.edit-user-info-item-tips {
+font-size:12rpx;
+color:red;
+}

@@ -63,9 +63,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
+					"id": 1,
+					"name": "pages/editUserInfo/editUserInfo",
+					"pathName": "pages/editUserInfo/editUserInfo",
+					"query": "",
 					"scene": null
 				}
 			]
