@@ -1,0 +1,10 @@
+<!--pages/user/user.wxml-->
+<view class="user">
+	<view class="user-info">
+		<image mode="aspectFit" src="{{userPhoto}}"></image>
+		<text wx:if="{{logged}}">欢迎您：{{ nickname }}</text>
+		<view wx:else>
+			<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">微信登录</button>
+		</view>
+	</view>
+</view>

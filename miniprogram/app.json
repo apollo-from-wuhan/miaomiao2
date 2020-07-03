@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/nearby/nearby",
+    "pages/user/user",
+    "pages/message/message"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#937bf5",
+    "navigationBarTitleText": "萌萌的喵星人",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#b4b5b6",
+    "selectedColor": "#937bf5",
+    "list": [
+      {
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_active.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/tabbar/nearby.png",
+        "selectedIconPath": "images/tabbar/nearby_active.png",
+        "pagePath": "pages/nearby/nearby",
+        "text": "附近"
+      },
+      {
+        "iconPath": "images/tabbar/message.png",
+        "selectedIconPath": "images/tabbar/message_active.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
+      },
+      {
+        "iconPath": "images/tabbar/user.png",
+        "selectedIconPath": "images/tabbar/user_active.png",
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  }
+}
