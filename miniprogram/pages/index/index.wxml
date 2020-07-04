@@ -12,10 +12,10 @@
 	</swiper>
 
 	<view class="index-tab">
-		<view class="active">
+		<view class="{{ current=='links' ? 'active':'' }}" data-current="links" bindtap="handleCurrent">
 			推荐
 		</view>
-		<view>
+		<view class="{{ current=='time' ? 'active':'' }}" data-current="time" bindtap="handleCurrent">
 			最新
 		</view>
 	</view>

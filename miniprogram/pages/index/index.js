@@ -17,7 +17,8 @@ Page({
     ],
     height: "",
     width: "",
-    listData: []
+    listData: [],
+    current: "links"
   },
 
   goheight: function (e) {
@@ -123,11 +124,28 @@ Page({
       userPhoto: true,
       links: true,
       nickName: true
-    }).get().then(res => {
-      console.log(res)
-      this.setData({
-        listData: res.data
-      })
     })
+      .orderBy(this.data.current, "desc")
+      .get()
+      .then(res => {
+        console.log(res)
+        this.setData({
+          listData: res.data
+        })
+      })
+  },
+
+  handleCurrent(event) {
+    let current = event.target.dataset.current
+    console.log(current)
+    if (current == this.data.current) {
+      return false
+    } else {
+      this.setData({
+        current
+      }, () => {
+        this.getListData()
+      })
+    }
   }
 })
