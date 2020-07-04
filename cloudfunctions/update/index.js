@@ -1,0 +1,30 @@
+// 云函数入口文件
+const cloud = require('wx-server-sdk')
+
+cloud.init({
+  env: "miaomiao-self"
+})
+
+const db = cloud.database()
+const _ = db.command
+
+// 云函数入口函数
+exports.main = async (event, context) => {
+  try {
+    if (typeof event.data == "string") {
+      event.data = eval("(" + event.data + ")")
+    }
+
+    if (event.doc) {
+      return await db.collection(event.collection)
+        .doc(event.doc)
+        .update({
+          data: {
+            ...event.data
+          }
+        })
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}

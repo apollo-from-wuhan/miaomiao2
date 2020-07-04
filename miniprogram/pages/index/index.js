@@ -1,4 +1,7 @@
 // pages/index/index.js
+
+const db = wx.cloud.database()
+
 Page({
 
   /**
@@ -13,7 +16,8 @@ Page({
       "../../images/swiper/5.jpg"
     ],
     height: "",
-    width: ""
+    width: "",
+    listData: []
   },
 
   goheight: function (e) {
@@ -43,7 +47,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getListData()
   },
 
   /**
@@ -86,5 +90,44 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  handleLinks(event) {
+    let id = event.target.dataset.id
+
+    wx.cloud.callFunction({
+      name: "update",
+      data: {
+        collection: "users",
+        doc: id,
+        data: "{links:_.inc(1)}"
+      }
+    }).then(res => {
+      const updatedNum = res.result.stats.updated
+      if (updatedNum > 0) {
+        const cloneListData = [...this.data.listData]
+        cloneListData.forEach(item => {
+          if (item._id == id) {
+            item.links++
+          }
+        })
+        this.setData({
+          listData: cloneListData
+        })
+      }
+    })
+  },
+
+  getListData() {
+    db.collection("users").field({
+      userPhoto: true,
+      links: true,
+      nickName: true
+    }).get().then(res => {
+      console.log(res)
+      this.setData({
+        listData: res.data
+      })
+    })
   }
 })
