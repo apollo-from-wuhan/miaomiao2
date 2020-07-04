@@ -1,1 +1,12 @@
 /* miniprogram/pages/editUserInfo/head/head.wxss */
+.avatar {
+  border: 1px solid blue;
+  height: 200rpx;
+  margin: 20rpx;
+  text-align: center;
+}
+
+.avatar image {
+  height: 80%;
+  display: block;
+}
