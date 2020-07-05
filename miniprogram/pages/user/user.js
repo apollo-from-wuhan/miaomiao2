@@ -42,6 +42,7 @@ Page({
             logged: true,
             id: app.userInfo._id
           })
+          this.getMessage()
         } else {
           this.setData({
             disabled: false
@@ -126,5 +127,35 @@ Page({
         })
       })
     }
+  },
+
+  getMessage() {
+    db
+      .collection("message")
+      .where({
+        userID: app.userInfo._id
+      })
+      .watch({
+        onChange: function (snapshot) {
+          console.log(snapshot)
+          if (snapshot.docChanges.length > 0) {
+            const list = snapshot.docChanges[0].doc.list
+            if (list.length) {
+              wx.showTabBarRedDot({
+                index: 2,
+              })
+              app.userMessage = list
+            } else {
+              wx.hideTabBarRedDot({
+                index: 2,
+              })
+              app.userMessage = []
+            }
+          }
+        },
+        onError: function (err) {
+          console.error('the watch closed because of error', err)
+        }
+      })
   }
 })
