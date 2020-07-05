@@ -1,18 +1,29 @@
 // miniprogram/pages/detail/detail.js
+
+const app = getApp()
+const db = wx.cloud.database()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    detail: {},
+    isFriend: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let userID = options.userID
+    db.collection("users").doc(userID).get()
+      .then(res => {
+        this.setData({
+          detail: res.data
+        })
+      })
   },
 
   /**
@@ -61,6 +72,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+
+  handleAddFriend() {
 
   }
 })

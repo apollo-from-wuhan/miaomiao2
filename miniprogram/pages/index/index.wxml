@@ -22,7 +22,7 @@
 
 	<view class="index-list">
 		<view class="index-list-item" wx:for="{{ listData }}" wx:key="index">
-			<image mode="aspectFill" src="{{ item.userPhoto }}" data-id="{{ item._id }}"></image>
+			<image mode="aspectFit" src="{{ item.userPhoto }}" data-id="{{ item._id }}" bindtap="handleDetail"></image>
 			<view class="index-list-text">
 				<text>{{ word.wordSplit(item.nickName)}}</text>
 				<text data-id="{{ item._id }}" bindtap="handleLinks">
