@@ -1,2 +1,10 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="message" wx:if="{{ logged }}">
+	<view wx:if="{{ !userMessages.length }}">
+		<text class="message-text">暂无消息...</text>
+	</view>
+	<view wx:else>
+		<text class="message-text">消息列表:</text>
+		<remove-list wx:for="{{ userMessages }}" wx:key="index" messageID="{{item}}" bindmyevent="onMyEvent" />
+	</view>
+</view>
