@@ -108,6 +108,7 @@ Page({
           signature: "",
           phoneNumber: "",
           weixinNumber: "",
+          friendsList: [],
           showLocation: true,
           links: 0,
           time: new Date()

@@ -24,7 +24,35 @@ Component({
    */
   methods: {
     handleAddFriend() {
+      wx.showModal({
+        title: "提示信息",
+        content: "申请好友",
+        confirmText: "同意",
+        success: (res) => {
+          if (res.confirm) {
+            db.collection("users").doc(app.userInfo._id).update({
+              data: {
+                friendsList: _.unshift(this.data.messageID)
+              }
+            }).then(res => {
 
+            })
+
+            wx.cloud.callFunction({
+              name: "update",
+              data: {
+                collection: "users",
+                doc: this.data.messageID,
+                data: `{friendsList:_.unshift('${app.userInfo._id}')}`
+              }
+            })
+
+            this.removeMessage()
+          } else if (res.cancel) {
+            console.log("用户点击取消...")
+          }
+        }
+      })
     },
 
     handleDelMessage() {
