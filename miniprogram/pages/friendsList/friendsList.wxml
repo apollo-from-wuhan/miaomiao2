@@ -1,2 +1,13 @@
 <!--miniprogram/pages/friendsList/friendsList.wxml-->
-<text>miniprogram/pages/friendsList/friendsList.wxml</text>
+<view class="friendsList">
+	<text>好友列表: </text>
+	<navigator wx:for="{{ friendsList }}" wx:key="index" url="{{ '../detail/detail?userID=' + item._id }}" open-type="navigate">
+		<view class="friendsList-item">
+			<view>
+				<image src="{{ item.userPhoto }}" mode="aspectFit"></image>
+				<text>{{ item.nickName}}</text>
+			</view>
+			<text class="iconfont iconarrowRight"></text>
+		</view>
+	</navigator>
+</view>
