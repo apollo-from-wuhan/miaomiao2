@@ -55,7 +55,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 不加这一句, 发现首页头像不会切换页面后自动更新
+    this.getListData()
   },
 
   /**

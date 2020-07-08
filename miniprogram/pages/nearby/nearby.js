@@ -104,6 +104,8 @@ Page({
         const result = []
         data.forEach(item => {
           if (item.userPhoto) {
+
+
             result.push({
               iconPath: item.userPhoto,
               id: item._id,
@@ -112,6 +114,35 @@ Page({
               width: 30,
               height: 30
             })
+
+            // 下面是老师的代码, 但我不知道是测试还是版本的原因, 不做如下处理, 依然可以正确显示地图上的好友头像
+            // if (item.userPhoto.includes("cloud://")) {
+            //   wx.cloud.getTempFileURL({
+            //     fileList: [item.userPhoto],
+            //     success: res => {
+            //       result.push({
+            //         iconPath: res.fileList[0].tempFileURL,
+            //         id: item._id,
+            //         latitude: item.latitude,
+            //         longitude: item.longitude,
+            //         width: 30,
+            //         height: 30
+            //       })
+            //       this.setData({
+            //         markers: result
+            //       })
+            //     }
+            //   })
+            // } else {
+            //   result.push({
+            //     iconPath: item.userPhoto,
+            //     id: item._id,
+            //     latitude: item.latitude,
+            //     longitude: item.longitude,
+            //     width: 30,
+            //     height: 30
+            //   })
+            // }
           }
         })
         this.setData({
@@ -123,7 +154,7 @@ Page({
   markerTap(event) {
     console.log(event)
     wx.navigateTo({
-      url: '/pages/detail/detail?userID=' + event.markerID,
+      url: '/pages/detail/detail?userID=' + event.markerId,
     })
   }
 })
