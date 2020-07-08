@@ -8,7 +8,7 @@
 	<swiper class="index-swiper" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" style="height:{{height}}">
 		<block wx:for="{{background}}" wx:key="*this">
 			<swiper-item>
-				<image src="{{item}}" class="swiper-item" mode="widthFix" bindload='goheight'></image>
+				<image src="{{item.fileId}}" class="swiper-item" mode="widthFix" bindload='goheight'></image>
 			</swiper-item>
 		</block>
 	</swiper>

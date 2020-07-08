@@ -9,11 +9,11 @@ Page({
    */
   data: {
     background: [
-      "../../images/swiper/1.jpg",
-      "../../images/swiper/2.jpg",
-      "../../images/swiper/3.jpg",
-      "../../images/swiper/4.jpg",
-      "../../images/swiper/5.jpg"
+      // "../../images/swiper/1.jpg",
+      // "../../images/swiper/2.jpg",
+      // "../../images/swiper/3.jpg",
+      // "../../images/swiper/4.jpg",
+      // "../../images/swiper/5.jpg"
     ],
     height: "",
     width: "",
@@ -49,6 +49,7 @@ Page({
    */
   onReady: function () {
     this.getListData()
+    this.getBannerList()
   },
 
   /**
@@ -155,5 +156,16 @@ Page({
     wx.navigateTo({
       url: '/pages/detail/detail?userID=' + id
     })
+  },
+
+  getBannerList() {
+    db
+      .collection('banner')
+      .get()
+      .then(res => {
+        this.setData({
+          background: res.data
+        })
+      })
   }
 })
