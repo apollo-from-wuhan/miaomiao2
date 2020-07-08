@@ -1,2 +1,4 @@
 <!--pages/nearby/nearby.wxml-->
-<text>pages/nearby/nearby.wxml</text>
+<view class="map">
+	<map id="map" longitude="{{ longitude }}" latitude="{{ latitude }}" scale="14" show-location markers="{{ markers }}" bindmarkertap="markerTap"></map>
+</view>

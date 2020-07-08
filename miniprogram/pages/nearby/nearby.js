@@ -1,11 +1,18 @@
 // pages/nearby/nearby.js
+
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    longitude: "",
+    latitude: "",
+    markers: []
   },
 
   /**
@@ -19,14 +26,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getLocation()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getLocation()
   },
 
   /**
@@ -62,5 +69,61 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  getLocation() {
+    wx.getLocation({
+      type: "gcj02",
+      success: (res) => {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        this.setData({
+          longitude, latitude
+        })
+        this.getNearbyUsers()
+      }
+    })
+  },
+
+  getNearbyUsers() {
+    db.collection("users").where({
+      location: _.geoNear({
+        geometry: db.Geo.Point(this.data.longitude, this.data.latitude),
+        minDistance: 0,
+        maxDistance: 5000
+      }),
+      showLocation: true
+    }).field({
+      longitude: true,
+      latitude: true,
+      userPhoto: true
+    }).get()
+      .then(res => {
+        const data = res.data
+        console.log("geo data; ", data)
+        const result = []
+        data.forEach(item => {
+          if (item.userPhoto) {
+            result.push({
+              iconPath: item.userPhoto,
+              id: item._id,
+              latitude: item.latitude,
+              longitude: item.longitude,
+              width: 30,
+              height: 30
+            })
+          }
+        })
+        this.setData({
+          markers: result
+        })
+      })
+  },
+
+  markerTap(event) {
+    console.log(event)
+    wx.navigateTo({
+      url: '/pages/detail/detail?userID=' + event.markerID,
+    })
   }
 })

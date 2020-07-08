@@ -1,6 +1,8 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": true,
 		"scopeDataCheck": false,
@@ -11,26 +13,25 @@
 		"preloadBackgroundData": false,
 		"minified": true,
 		"autoAudits": false,
-		"newFeature": true,
+		"newFeature": false,
 		"uglifyFileName": false,
 		"uploadWithSourceMap": true,
 		"useIsolateContext": true,
 		"nodeModules": false,
-		"enhance": true,
+		"enhance": false,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
-		"showShadowRootInWxmlPanel": true,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
+		"showShadowRootInWxmlPanel": true
 	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.3",
 	"appid": "wx089941b45c50485f",
-	"projectname": "miaomiao2",
-	"libVersion": "2.8.1",
+	"projectname": "miniprogram-2",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -42,11 +43,12 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
+		"game": {
 			"current": -1,
 			"list": []
 		},
-		"game": {
+		"plugin": {
+			"current": -1,
 			"list": []
 		},
 		"gamePlugin": {
@@ -54,22 +56,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "pages/editUserInfo/editUserInfo",
-					"pathName": "pages/editUserInfo/editUserInfo",
-					"query": "",
-					"scene": null
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }
