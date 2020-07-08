@@ -1,0 +1,31 @@
+<!--components/search/search.wxml-->
+
+<view class="{{ isFocus ? 'container-focus' : 'container' }}">
+
+	<view class="search">
+		<view class="search-text">
+			<text class="iconfont iconsousuo1"></text>
+			<input type="text" placeholder="搜索喵星人" value="{{ searchValue }}" bindfocus="handleFocus" bindconfirm="handleConfirm" confirm-type="search"></input>
+		</view>
+		<view wx:if="{{ isFocus }}" class="search-cancel" bindtap="handleCancel">取消</view>
+	</view>
+
+	<view class="search-history">
+		<text>历史记录</text>
+		<text class="iconfont iconshanchu" bindtap="handleHistoryDelete"></text>
+	</view>
+	<view class="search-history-btn">
+		<text wx:for="{{ historyList }}" wx:key="index" bindtap="handleHistoryItemDel" data-text="{{ item }}">{{ item }}</text>
+	</view>
+
+	<navigator wx:for="{{ searchList}}" wx:key="index" url="{{ '/pages/detail/detail?userID=' + item._id}}" open-type="navigate">
+		<view class="search-list-item">
+			<view>
+				<image src="{{ item.userPhoto }}"></image>
+				<text>{{ item.nickName }}</text>
+			</view>
+			<text class="iconfont iconarrowRight"></text>
+		</view>
+	</navigator>
+
+</view>

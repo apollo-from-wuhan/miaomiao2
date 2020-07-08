@@ -2,6 +2,8 @@
 <wxs src="../../utils/wordSplit.wxs" module="word" />
 <wxs src="../../utils/unitFormat.wxs" module="num" />
 
+<search />
+
 <view class="index">
 	<swiper class="index-swiper" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" style="height:{{height}}">
 		<block wx:for="{{background}}" wx:key="*this">
